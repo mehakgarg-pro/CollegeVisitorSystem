@@ -10,7 +10,6 @@ public class VisitorDAO {
 
     // INSERT VISITOR
     public boolean addVisitor(Visitor v) {
-
         String sql = "INSERT INTO visitors " +
                      "(name, phone, purpose, person_to_meet, visit_date, visit_time) " +
                      "VALUES (?, ?, ?, ?, CURDATE(), CURTIME())";
@@ -31,9 +30,8 @@ public class VisitorDAO {
         }
     }
 
-    // 🔥 FETCH ALL VISITORS (THIS WAS MISSING)
+    // FETCH ALL VISITORS
     public List<Visitor> getAllVisitors() {
-
         List<Visitor> list = new ArrayList<>();
         String sql = "SELECT * FROM visitors ORDER BY id DESC";
 
@@ -43,13 +41,13 @@ public class VisitorDAO {
 
             while (rs.next()) {
                 Visitor v = new Visitor(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("phone"),
-                        rs.getString("purpose"),
-                        rs.getString("person_to_meet"),
-                        rs.getDate("visit_date").toLocalDate(),
-                        rs.getTime("visit_time").toLocalTime()
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("phone"),
+                    rs.getString("purpose"),
+                    rs.getString("person_to_meet"),
+                    rs.getDate("visit_date").toLocalDate(),
+                    rs.getTime("visit_time").toLocalTime()
                 );
                 list.add(v);
             }
